@@ -49,4 +49,28 @@ public class Station {
         return "STATION " + name + ": " + line + " line, in service: " + inService +
                ", previous station: " + prevName + ", next station: " + nextName;
     }
+  public int tripLength(Station dest) {
+        ArrayList<Station> visited = new ArrayList<>();
+        return tripHelper(dest, visited);
+    }
+ 
+    protected int tripHelper(Station dest, ArrayList<Station> visited) {
+        if (visited.contains(this)) {
+            System.out.println("Already visited " + name + ", backtracking");
+            return -1;
+        }
+        if (this.equals(dest)) {
+            System.out.println("Found destination: " + name);
+            return 0;
+        }
+        visited.add(this);
+        if (next != null) {
+            System.out.println("Trying next: " + next.name + " from " + name);
+            int result = next.tripHelper(dest, visited);
+            if (result >= 0) return result + 1;
+        }
+        System.out.println("Dead end at: " + name);
+        return -1;
+    }
+}
  
