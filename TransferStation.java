@@ -46,11 +46,10 @@ public class TransferStation extends Station {
             if (result >= 0) return result + 1;
         }
         for (Station s : otherStations) {
-            if (s.prev != null && s.prev.equals(this)) {
                 System.out.println("Trying transfer next: " + s.name + " from " + name);
                 int result = s.tripHelper(dest, visited);
                 if (result >= 0) return result + 1;
-            }
+  
         }
         System.out.println("Dead end at: " + name);
         return -1;
