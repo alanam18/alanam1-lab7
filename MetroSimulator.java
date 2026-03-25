@@ -66,11 +66,15 @@ public class MetroSimulator{
 	public static EndStation makeOrangeLine(){
 		va_square.connect(clarendon);
 		clarendon.connect(court_house);
-        court_house.connect(metro_center);
-        metro_center.connect(federal_triangle);
-        federal_triangle.connect(smithsonian);
-        va_square.makeEnd();
-        smithsonian.makeEnd();
+    	court_house.connect(rosslyn);
+    	rosslyn.connect(foggy_bottom);
+    	foggy_bottom.connect(farragut_west);
+    	farragut_west.connect(mcpherson_square);
+   		mcpherson_square.connect(metro_center);
+    	metro_center.connect(federal_triangle);
+    	federal_triangle.connect(smithsonian);
+    	va_square.makeEnd();
+    	smithsonian.makeEnd();
         return va_square;
 
 	}
@@ -78,24 +82,24 @@ public class MetroSimulator{
 	public static EndStation makeRedLine(){
 		woodley_park.connect(dupont_circle);
 		dupont_circle.connect(farragut_north);
-        metro_center.addTransferStationPrev(farragut_north);
-        metro_center.addTransferStationNext(gallery_place);
-        gallery_place.connect(judiciary_square);
-        woodley_park.makeEnd();
-        judiciary_square.makeEnd();
+    	farragut_north.connect(metro_center); 
+    	metro_center.addTransferStationPrev(farragut_north);
+    	metro_center.addTransferStationNext(gallery_place);
+    	gallery_place.connect(judiciary_square);
+    	woodley_park.makeEnd();
+    	judiciary_square.makeEnd();
 		return woodley_park;
 	}
 
 	public static EndStation makePurpleLine(){
 		s1.connect(s2);
 		s2.connect(s3);
+		s3.connect(metro_center);
         metro_center.addTransferStationPrev(s3);
         metro_center.addTransferStationNext(s4);
         s4.connect(s5);
         s1.makeEnd();
         s5.makeEnd();
-		
-
 		return s1;
 	}
 }
