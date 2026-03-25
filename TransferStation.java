@@ -20,12 +20,12 @@ public class TransferStation extends Station {
     }
  
    public String toString() {
-    String result = super.toString().replace("STATION", "TRANSFERSTATION") + "\n\tTransfers: \n";
+    String result = "TRANSFERSTATION " + name + ": " + line + " line, in service: " + inService +
+                    ", previous station: " + (prev == null ? "none" : prev.name) +
+                    ", next station: " + (next == null ? "none" : next.name) +
+                    "\n\tTransfers: \n";
     for (Station s : otherStations) {
-        String[] lines = s.toString().split("\n");
-        for (String l : lines) {
-            result += "\t" + l + "\n";
-        }
+        result += "\t" + s.toString() + "\n";
     }
     return result;
 }
@@ -46,7 +46,7 @@ public class TransferStation extends Station {
             if (result >= 0) return result + 1;
         }
         for (Station s : otherStations) {
-            if (s.prev != null && s.prev.name.equals(this.name)) {
+            if (s.prev != null && s.prev.equals(this)) {
                 System.out.println("Trying transfer next: " + s.name + " from " + name);
                 int result = s.tripHelper(dest, visited);
                 if (result >= 0) return result + 1;
